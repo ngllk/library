@@ -1,0 +1,150 @@
+extends layout
+
+block content
+  header
+    nav(class = 'navbar navbar-expand-lg bg-light')
+      .container
+        button.btn.btn-outline-primary(data-toggle="modal" data-target='#filter') Filter due date
+        .mb-5
+        button.btn.btn-outline-primary(data-toggle="modal" data-target='#inStock') In stock
+        form( method='POST' action='/showAll')
+          button.btn.btn-outline-primary(type='submit' data-toggle="modal" data-target='#showAll') Show all
+        button(class='btn btn-outline-danger ml-auto' data-toggle="modal" data-target="#deleteBook") Delete book
+        button(class='btn btn-outline-success ml-auto' data-toggle="modal" data-target="#addBook") Add book
+
+  main
+    
+    section.container.mt-4
+      .row
+        for book in books
+              .col-3.mb-3
+                .card.book
+                  .card-header.px-2
+                    .row.no-gutters
+                      if book.inLibrary.status
+                        .col-6
+                          p.text-muted.m-0 In stock
+                      else
+                        .col-6.d-flex.align-items-center
+                          p.text-muted.m-0 #{book.inLibrary.reader}
+                        .col-6.d-flex.align-items-center.justify-content-end
+                          p.text-muted.m-0 #{book.inLibrary.due}
+
+                  .card-body
+                    img(src=book.cover, class='img-thumbnail')
+                    p.card-text.mt-3 #{book.author}
+                    h3.card-title.mt-2 #{book.title}
+                    p.card-text.mt-5 Published: #{book.year}
+                    p.card-text.mt-5 Country: #{book.country}
+                  .card-footer.p-0
+                    if book.inLibrary.status
+                      button(class='btn btn-success w-100 border-radius-0' data-toggle="modal" data-target='#takeBook') Take this book
+                    else
+                      form( method='POST' action='/return')
+                        input(type="hidden" name="bookId" value=book.id)
+                        button(class='btn btn-primary w-100 border-radius-0') Return this book
+
+    .modal.fade#addBook(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+      .modal-dialog(role="document")
+        .modal-content
+          .modal-header
+            h3.modal-title Add book
+            button.close(type='button' data-dismiss="modal" aria-label="Close")
+              span(aria-hidden="true") &times;
+          .modal-body
+            form( method='POST' action='/add-book')
+              .form-group
+                label Title
+                input.form-control#name(type="text" placeholder="Enter book's title" name="title")
+              .form-group
+                label Author's name
+                input.form-control#author(type="text" placeholder="Enter author's name" name="author")
+              .form-group
+                label Published
+                input.form-control#year(type="number" placeholder="Enter year" name="year")
+              .form-group
+                label Country
+                input.form-control#country(type="text" placeholder="Enter country" name="country")
+              .form-group
+                label Cover's image
+                input.form-control#cover(type="text" placeholder="Enter link" name="cover")
+
+              button.btn.btn-primary(type='submit') Save
+
+
+    .modal.fade#filter(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+      .modal-dialog(role="document")
+        .modal-content
+          .modal-header
+            h3.modal-title Filter books
+            button.close(type='button' data-dismiss="modal" aria-label="Close")
+              span(aria-hidden="true") &times;
+          .modal-body
+           form( method='POST' action='/filter')
+              .form-group
+                label Due date
+                input.form-control#year(type="date" placeholder="Enter date" name="dueDate")
+
+              button.btn.btn-primary(type='submit') Filter
+
+    .modal.fade#inStock(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+      .modal-dialog(role="document")
+        .modal-content
+          .modal-header
+             h3.modal-title Filter books
+              button.close(type='button' data-dismiss="modal" aria-label="Close")
+                span(aria-hidden="true") &times;
+          .modal-body
+           form( method='POST' action='/inStock')
+
+              .form-group
+                div(class='custom-control custom-checkbox')
+                  input(type='checkbox' class='custom-control-input' id='inLibrary' name='inLibrary')
+                  label(class='custom-control-label' for='inLibrary') In stock
+
+              button.btn.btn-primary(type='submit') Filter
+              
+    .modal.fade#takeBook(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+      .modal-dialog(role="document")
+        .modal-content
+          .modal-header
+             h3.modal-title Take 
+              button.close(type='button' data-dismiss="modal" aria-label="Close")
+                span(aria-hidden="true") &times;
+          .modal-body
+           form( method='POST' action='/take')
+              .form-group
+                label Select book
+                select(class='custom-select' name='dropDown')
+                  for book in books
+                    option(value=book.id) #{book.title}
+              .form-group
+                label Reader's name 
+                input.form-control#name(type="text" placeholder="Enter your name" name="reader")
+              .form-group
+                label Due date
+                input.form-control#year(type="date" placeholder="Enter date" name="due")
+
+              button.btn.btn-primary(type='submit') Take
+
+    .modal.fade#deleteBook(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+      .modal-dialog(role="document")
+        .modal-content
+          .modal-header
+             h3.modal-title Delete 
+              button.close(type='button' data-dismiss="modal" aria-label="Close")
+                span(aria-hidden="true") &times;
+          .modal-body
+           form(method='POST' action='/delete')
+              .form-group
+                label Select book
+                select(class='custom-select' name='dropDownToDelete')
+                  for book in books
+                    option(value=book.id) #{book.title}
+
+              button.btn.btn-primary(type='submit') Save
+             
+            
+  
+  script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js")
+  script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js")

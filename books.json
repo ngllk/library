@@ -1,0 +1,85 @@
+[
+  {
+    "id": 1,
+    "title": "Invisible Monsters",
+    "author": "Chuck Palahniuk",
+    "cover": "https://products-images.di-static.com/image/chuck-palahniuk-invisible-monsters/9780099285441-475x500-1.jpg",
+    "country": "United States",
+    "year": 1999,
+    "inLibrary": {
+      "status": false,
+      "reader": "Marina",
+      "due": "2020-05-03"
+    }
+  },
+  {
+    "id": 2,
+    "title": "The Master and Margarita",
+    "author": "Mikhail Bulgakov",
+    "cover": "https://images-na.ssl-images-amazon.com/images/I/61trdULCIRL._SX331_BO1,204,203,200_.jpg",
+    "country": "Soviet Union",
+    "year": 1966,
+    "inLibrary": {
+      "status": true
+    }
+  },
+  {
+    "id": 3,
+    "title": "The Martian",
+    "author": "Andy Weir",
+    "cover": "https://images-na.ssl-images-amazon.com/images/I/81wFMY9OAFL.jpg",
+    "country": "United States",
+    "year": 2011,
+    "inLibrary": {
+      "status": true
+    }
+  },
+  {
+    "id": 4,
+    "title": "Early Short Stories",
+    "author": "Anton Chekhov",
+    "cover": "https://images-eu.ssl-images-amazon.com/images/I/5122TKQHG0L._SY291_BO1,204,203,200_QL40_ML2_.jpg",
+    "country": "Russian Empire",
+    "year": 1883,
+    "inLibrary": {
+      "status": true
+    }
+  },
+  {
+    "id": 5,
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "cover": "https://images-na.ssl-images-amazon.com/images/I/91eKRbuhgaL.jpg",
+    "country": "United Kingdom",
+    "year": 1812,
+    "inLibrary": {
+      "status": false,
+      "reader": "Natasha",
+      "due": "2020-04-22"
+    }
+  },
+  {
+    "id": 6,
+    "title": "The Fellowship of the Ring",
+    "author": "J. R. R. Tolkien",
+    "cover": "https://kbimages1-a.akamaihd.net/c3f1b488-9ed2-4730-871e-7771bb80f182/1200/1200/False/the-fellowship-of-the-ring-the-lord-of-the-rings-book-1-1.jpg",
+    "country": "United Kingdom",
+    "year": 1954,
+    "inLibrary": {
+      "status": false,
+      "reader": "Ilya",
+      "due": "2020-05-19"
+    }
+  },
+  {
+    "id": 7,
+    "title": "The Gambler",
+    "author": "Fyodor Dostoevsky",
+    "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348607722l/12857.jpg",
+    "country": "Russian Empire",
+    "year": 1866,
+    "inLibrary": {
+      "status": true
+    }
+  }
+]
